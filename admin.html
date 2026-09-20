@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Comité Directivo — Incubadora GTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            dark: '#0B1F3A',
+                            light: '#143054',
+                            accent: '#10B981',
+                            orange: '#F97316',
+                            purple: '#8B5CF6',
+                            bg: '#F3F6F9',
+                            greenbg: '#E6F4EA'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen flex flex-col bg-brand-bg">
+
+    <!-- Header -->
+    <header class="bg-brand-dark text-white px-6 py-3 flex justify-between items-center sticky top-0 z-50 shadow-md">
+        <div class="flex items-center space-x-4">
+            <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-brand-dark font-bold text-xs">GTO</div>
+            <div class="border-l border-gray-600 pl-4">
+                <h2 class="text-sm font-semibold">Ficha de Evaluación Técnica</h2>
+                <p class="text-xs text-gray-400">Comité Directivo • Sesión 2026</p>
+            </div>
+        </div>
+        <div class="flex items-center space-x-3">
+            <span class="bg-white bg-opacity-10 px-3 py-1 rounded-full text-xs" id="admin-counter">0 propuestas en revisión</span>
+            <button onclick="logoutAdmin()" class="text-sm text-gray-300 hover:text-white flex items-center transition">
+                <i class="fas fa-sign-out-alt mr-2"></i> Salir
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenido -->
+    <main class="flex-grow w-full py-10 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold text-brand-dark mb-1">Propuestas Pendientes de Evaluación</h1>
+                <p class="text-sm text-gray-500">Revisa cada propuesta y emite tu decisión de forma independiente.</p>
+            </div>
+
+            <div id="admin-list" class="space-y-4">
+                <!-- Se llena dinámicamente con scrypt.js -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Notificación Flotante -->
+    <div id="toast" class="fixed bottom-5 right-5 transform translate-y-20 opacity-0 transition-all duration-300 bg-brand-dark text-white px-6 py-3 rounded-lg shadow-xl z-[100] flex items-center">
+        <i class="fas fa-check-circle text-brand-accent mr-3"></i>
+        <span id="toast-msg">Notificación</span>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="scrypt.js"></script>
+    <script>
+        requireAdminAuth();
+        document.addEventListener('DOMContentLoaded', renderAdmin);
+    </script>
+</body>
+</html>

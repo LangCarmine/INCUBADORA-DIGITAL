@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Emprendedor — Incubadora GTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            dark: '#0B1F3A', light: '#143054', accent: '#10B981',
+                            orange: '#F97316', purple: '#8B5CF6', bg: '#F3F6F9', greenbg: '#E6F4EA'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen bg-brand-bg flex items-center justify-center p-4">
+
+    <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 w-full max-w-md">
+        <div class="text-center mb-8">
+            <div class="w-14 h-14 bg-brand-purple rounded-full flex items-center justify-center text-white mx-auto mb-4">
+                <i class="fas fa-rocket text-xl"></i>
+            </div>
+            <h1 class="text-2xl font-semibold text-brand-dark mb-1" id="auth-title">Acceso Emprendedor</h1>
+            <p class="text-sm text-gray-500" id="auth-subtitle">Ingresa a tu cuenta para gestionar tus propuestas</p>
+        </div>
+
+        <!-- Tabs Login / Registro -->
+        <div class="flex mb-6 bg-gray-100 rounded-lg p-1">
+            <button onclick="switchAuthTab('login')" id="tab-login" class="flex-1 py-2 text-sm font-semibold rounded-md bg-white text-brand-dark shadow-sm transition">
+                Iniciar Sesión
+            </button>
+            <button onclick="switchAuthTab('register')" id="tab-register" class="flex-1 py-2 text-sm font-semibold rounded-md text-gray-500 transition">
+                Crear Cuenta
+            </button>
+        </div>
+
+        <!-- Formulario Login -->
+        <form id="loginForm" onsubmit="handleEmprendedorLogin(event)">
+            <div class="space-y-5">
+                <div>
+                    <label class="form-label">Correo Electrónico</label>
+                    <input type="email" id="login_correo" required class="form-input" placeholder="Ej. maria@empresa.com" autocomplete="email">
+                </div>
+                <div>
+                    <label class="form-label">Contraseña</label>
+                    <input type="password" id="login_pass" required class="form-input" placeholder="••••••••" autocomplete="current-password">
+                </div>
+
+                <div id="login-error" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2 flex items-center">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <span id="login-error-msg">Credenciales incorrectas</span>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-purple hover:bg-purple-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition flex items-center justify-center">
+                    <i class="fas fa-sign-in-alt mr-2"></i> Iniciar Sesión
+                </button>
+            </div>
+        </form>
+
+        <!-- Formulario Registro -->
+        <form id="registerForm" onsubmit="handleEmprendedorRegister(event)" class="hidden">
+            <div class="space-y-5">
+                <div>
+                    <label class="form-label">Nombre Completo</label>
+                    <input type="text" id="reg_nombre" required class="form-input" placeholder="Ej. María González Pérez" autocomplete="name">
+                </div>
+                <div>
+                    <label class="form-label">Correo Electrónico</label>
+                    <input type="email" id="reg_correo" required class="form-input" placeholder="Ej. maria@empresa.com" autocomplete="email">
+                </div>
+                <div>
+                    <label class="form-label">Contraseña (mín. 6 caracteres)</label>
+                    <input type="password" id="reg_pass" required minlength="6" class="form-input" placeholder="••••••••" autocomplete="new-password">
+                </div>
+
+                <div id="register-error" class="hidden text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg px-4 py-2 flex items-center">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <span id="register-error-msg">Error al crear la cuenta</span>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-accent hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition flex items-center justify-center">
+                    <i class="fas fa-user-plus mr-2"></i> Crear Cuenta
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8 text-center text-xs text-gray-400 border-t pt-6">
+            <a href="index.html" class="text-brand-purple hover:underline"><i class="fas fa-arrow-left mr-1"></i> Volver al inicio</a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud Recibida — Incubadora GTO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            dark: '#0B1F3A',
+                            light: '#143054',
+                            accent: '#10B981',
+                            orange: '#F97316',
+                            purple: '#8B5CF6',
+                            bg: '#F3F6F9',
+                            greenbg: '#E6F4EA'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="min-h-screen bg-brand-bg flex items-center justify-center p-4">
+
+    <div class="bg-white p-10 rounded-2xl shadow-sm border border-gray-100 w-full max-w-md text-center">
+        <div class="w-20 h-20 bg-brand-accent bg-opacity-10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <i class="fas fa-check-circle text-4xl text-brand-accent"></i>
+        </div>
+
+        <h1 class="text-2xl font-semibold text-brand-dark mb-2">¡Solicitud Recibida!</h1>
+        <p class="text-sm text-gray-500 mb-8">Tu proyecto ha sido enviado exitosamente al Comité Directivo de la Incubadora Digital GTO.</p>
+
+        <div class="bg-brand-greenbg border border-green-200 rounded-xl p-6 mb-8">
+            <p class="text-xs text-emerald-800 uppercase tracking-wide font-semibold mb-2">Folio de Confirmación</p>
+            <p id="folio-display" class="text-3xl font-mono font-bold text-brand-dark">GTO-0000</p>
+        </div>
+
+        <div class="bg-gray-50 rounded-xl p-5 mb-8 text-left">
+            <p class="text-xs text-gray-400 uppercase font-semibold mb-3">¿Qué sigue?</p>
+            <ul class="space-y-2 text-sm text-gray-600">
+                <li class="flex items-start"><i class="fas fa-check text-brand-accent mt-1 mr-2 text-xs"></i> El Comité revisará tu propuesta en los próximos días.</li>
+                <li class="flex items-start"><i class="fas fa-check text-brand-accent mt-1 mr-2 text-xs"></i> Podrás consultar el estado en tu cuenta.</li>
+                <li class="flex items-start"><i class="fas fa-check text-brand-accent mt-1 mr-2 text-xs"></i> Guarda tu folio para cualquier consulta.</li>
+            </ul>
+        </div>
+
+        <a href="mi-cuenta.html" class="w-full bg-brand-dark hover:bg-brand-light text-white font-semibold py-3 px-8 rounded-lg shadow-md transition flex items-center justify-center">
+            <i class="fas fa-user-circle mr-2"></i> Ir a Mi Cuenta
+        </a>
+        <a href="index.html" class="block mt-3 text-center text-xs text-brand-purple hover:underline">
+            Cerrar sesión
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const folio = sessionStorage.getItem('gto_last_folio') || 'GTO-0000';
+            document.getElementById('folio-display').innerText = folio;
+            sessionStorage.removeItem('gto_last_folio');
+        });
+    </script>
+</body>
+</html>
